@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+    <div class="container" id="feedapp">
+        <div class="columns">
+            <div class="column is-12">
+                <div class="wrapper-form">
+                    <form @submit.prevent = "submitTbooks()">
+                        <div class="field">
+                            <div class="control">
+                                <textarea class="textarea" v-model = "body" placeholder="what is happening?"></textarea>
+                            </div>
+                            
+                            <h1 v-text="body"> </h1>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-success">Submit</button>
+                            </div>
+                        </div>
+                        
+                        <div class="wrapper-tbooks">
+                            <div class="tbooks" v-for="tbook in tbooks">
+                                <div class="name" v-text="tbook.tbooker"></div>
+                                <div v-text="tbook.body"></div>
+                                <div class="info" v-text="tbook.created_at"></div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block script %}
+
+    <script>
+
+        new Vue({
+            el:"#feedapp",
+            delimeters:['[[',']]'],
+            data(){
+                return {
+                    body:'',
+                    data:{
+                        tbooker :"{{ request.user.username }}",
+                        created_at:"Now"
+                    },
+                    tbooks: []
+                }
+            },
+            methods:{
+              submitTbooks(){
+                  if(this.body !== ''){
+                    this.data.body = this.body
+                    this.tbooks.push(this.data);
+
+                    // send to backend
+                  }
+
+                  this.body = ''
+              }
+            }
+        });
+
+    </script>
+
+{% endblock %}

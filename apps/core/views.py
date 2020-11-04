@@ -1,4 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 
 def frontpage(request):
     return render(request, 'core/frontpage.html')
+
+def login(request):
+    return render(request, 'core/account/login.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login( user)
+
+            return redirect('frontpage')  #we have to give a name for frontpage
+        
+    else:
+        form = UserCreationForm()
+    return render(request, 'core/account/signup.html', {'form':form})
+
+

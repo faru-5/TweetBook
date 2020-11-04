@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from apps.core.views import frontpage
+
+
+from apps.core import views
 
 urlpatterns = [
-    path('', frontpage),
+    # core
+    path("", include('apps.core.urls')),
+
+    # feed
+    path("feed/", include('apps.feed.urls')),
+
+    # admin
     path('admin/', admin.site.urls),
 ]

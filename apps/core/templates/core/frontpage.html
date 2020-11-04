@@ -5,7 +5,12 @@
     <div class="container">
         <div class="columns">
             <div class="column is-12">
-                <h1 class="title">Welcome To TweetBook</h1>
+                <h1 class="title">Welcome
+                    {% if user.is_authenticated %}
+                        MR. {{user.username}}
+                    {% else %}
+                        to TweetBook
+                    {% endif %}</h1>
             </div>
         </div>
     </div>
