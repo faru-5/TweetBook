@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
+# api
+from apps.feed.api import  api_add_tbook
 
 from apps.core import views
 
@@ -26,6 +27,9 @@ urlpatterns = [
 
     # feed
     path("feed/", include('apps.feed.urls')),
+
+    # api
+    path('api/add_tbook/', api_add_tbook),
 
     # admin
     path('admin/', admin.site.urls),
