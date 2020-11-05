@@ -55,7 +55,16 @@
     <!-- end content -->
 
     <!-- script -->
+        <!-- ckeditor  -->
+        <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+        
+        <!-- vue -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            
+		ClassicEditor.create(document.getElementById('my_editor'))
+        </script>
         <!-- inserting script from the outside -->
 
         {% block script %}{% endblock %}

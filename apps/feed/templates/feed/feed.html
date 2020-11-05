@@ -9,7 +9,7 @@
                     <form @submit.prevent = "submitTbooks()">
                         <div class="field">
                             <div class="control">
-                                <textarea class="textarea" v-model = "body" placeholder="what is happening?"></textarea>
+                                <textarea id="my_editor" v-model = "body" placeholder="what is happening?"></textarea>
                             </div>
                             
                             <h1 v-text="body"> </h1>
@@ -41,6 +41,9 @@
 {% block script %}
 
     <script>
+
+		ClassicEditor.create(document.getElementById('my_editor'))
+	
 
         new Vue({
             el:"#feedapp",

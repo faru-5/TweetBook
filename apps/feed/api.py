@@ -7,11 +7,11 @@ from .models import Tbook
 
 @login_required
 def api_add_tbook(request):
-    # data = json.loads(request.body);
-    print(json.loads(request.body))
-    # body = data['body']
+    data = json.loads(request.body);
+    print(json.loads(request.bo))
+    body = data['body']
 
-    # tbook = Tbook.objects.create(body=body, created_by=request.user)
+    tbook = Tbook.objects.create(body=body, created_by=request.user)
     
     return JsonResponse({'success':True})
 
